@@ -23,6 +23,16 @@
                         <div class="card-body">
                             <h5 class="card-title"><?php echo $card->name ?></h5>
                             <p class="card-text"><?php echo "<b>ATK</b>: ", $card->atk ?? '' ?> / <?php echo "<b>DEF</b>: ", $card->def ?? '' ?></p>
+                            <p class="card-text"><?php echo "<b>Tipo</b>: ", $card->type ?></p>
+                            <p class="card-text"><b>Nível</b>:
+                                <?php
+                                    error_reporting(E_ERROR | E_PARSE);
+                                    if($card->level == 0){
+                                        echo "Não possui";
+                                    }else{
+                                        echo $card->level;
+                                    }
+                            ?></p>
                         </div>
                     </div>
                 </div>
