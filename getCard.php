@@ -49,7 +49,7 @@
                                     }
                                 ?>
                             </p>
-                            <p class="card-text"><?php echo "<b>Conjuntos de cartas</b>: ", $card->card_sets ?></p>
+                            <p class="card-text"><?php echo "<b>Conjuntos de cartas</b>: <b><i>Nome: </i></b>", $card->card_sets[0]->set_name ?><?php  ?></p>
                         </div>
                     </div>
                 </div>
