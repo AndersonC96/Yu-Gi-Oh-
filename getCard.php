@@ -32,7 +32,11 @@
                                     }else{
                                         echo $card->level;
                                     }
-                            ?></p>
+                                ?>
+                                <span id="symbol_2">
+                                    <img src="./level.png">
+                                </span>
+                            </p>
                         </div>
                     </div>
                 </div>
