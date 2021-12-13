@@ -26,10 +26,10 @@
                             <p class="card-text"><?php echo "<b>Tipo</b>: ", $card->type ?></p>
                             <p class="card-text"><b>Nível</b>:
                                 <?php
-                                    error_reporting(E_ERROR | E_PARSE);
-                                    if($card->level == 0){
-                                        echo "Carta Mágica";
-                                    }else{
+                                    error_reporting(E_ERROR | E_PARSE);// Desativa as mensagens de erro
+                                    if($card->level == 0){// Verifica se o nível existe
+                                        echo "Carta Mágica";// Caso não exista, mostra a mensagem
+                                    }else{// Caso exista, mostra o nível
                                         echo $card->level;
                                     }
                                 ?>
@@ -37,6 +37,19 @@
                                     <img src="./level.png">
                                 </span>
                             </p>
+                            <p class="card-text"><?php echo "<b>Raça</b>: ", $card->race ?></p>
+                            <!--<p class="card-text"><?php echo "<b>Atributos</b>: ", $card->attribute ?></p>-->
+                            <p class="card-text"><b>Atributos</b>:
+                                <?php
+                                    error_reporting(E_ERROR | E_PARSE);// Desativa as mensagens de erro
+                                    if($card->attribute == 0){// Verifica se o atributo existe
+                                        echo "Não tem atributo";// Caso não exista, mostra a mensagem
+                                    }else{// Caso exista, mostra o atributo
+                                        echo $card->attribute;
+                                    }
+                                ?>
+                            </p>
+                            <p class="card-text"><?php echo "<b>Conjuntos de cartas</b>: ", $card->card_sets[0] ?></p>
                         </div>
                     </div>
                 </div>
