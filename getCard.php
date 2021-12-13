@@ -28,12 +28,12 @@
                                 <?php
                                     error_reporting(E_ERROR | E_PARSE);
                                     if($card->level == 0){
-                                        echo "Não possui";
+                                        echo "Carta Mágica";
                                     }else{
                                         echo $card->level;
                                     }
                                 ?>
-                                <span id="symbol_2">
+                                <span id="nivel">
                                     <img src="./level.png">
                                 </span>
                             </p>
