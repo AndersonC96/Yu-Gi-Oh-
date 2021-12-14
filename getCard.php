@@ -49,7 +49,10 @@
                                     }
                                 ?>
                             </p>
-                            <p class="card-text"><?php echo "<b>Conjuntos de cartas</b>: <b><i>Nome: </i></b>", $card->card_sets[0]->set_name ?><?php  ?></p>
+                            <p class="card-text"><?php echo "<b>Conjuntos de cartas</b>: ", $card->card_sets[0]->set_name ?> (<?php echo $card->card_sets[0]->set_rarity ?>)</p>
+                            <p class="card-text"><?php echo "<b>Preços</b>: U$ ", $card->card_prices[0]->cardmarket_price, " (Cardmarket)" ?> / <?php echo "U$ ", $card->card_prices[0]->tcgplayer_price, " (TCGplayer)" ?> / 
+                                <?php echo "U$ ", $card->card_prices[0]->ebay_price, " (Ebay)" ?> / <?php echo "U$ ", $card->card_prices[0]->coolstuffinc_price, " (CoolStuffInc)" ?> / <?php echo "U$ ", $card->card_prices[0]->amazon_price, " (Amazon)" ?>
+                            </p>
                         </div>
                     </div>
                 </div>
