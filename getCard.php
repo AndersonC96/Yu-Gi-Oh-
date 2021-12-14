@@ -22,13 +22,14 @@
                         <img src="<?php echo $card->card_images[0]->image_url ?>" class="card-img-top">
                         <div class="card-body">
                             <h5 class="card-title"><?php echo $card->name ?></h5>
+                            <p class="card-text"><?php echo "<b>Descrição</b>: ", $card->desc ?></p>
                             <p class="card-text"><?php echo "<b>ATK</b>: ", $card->atk ?? '' ?> / <?php echo "<b>DEF</b>: ", $card->def ?? '' ?></p>
                             <p class="card-text"><?php echo "<b>Tipo</b>: ", $card->type ?></p>
                             <p class="card-text"><b>Nível</b>:
                                 <?php
                                     error_reporting(E_ERROR | E_PARSE);// Desativa as mensagens de erro
                                     if($card->level == 0){// Verifica se o nível existe
-                                        echo "Carta Mágica";// Caso não exista, mostra a mensagem
+                                        echo "Não tem nível";// Caso não exista, mostra a mensagem
                                     }else{// Caso exista, mostra o nível
                                         echo $card->level;
                                     }
@@ -38,6 +39,17 @@
                                 </span>
                             </p>
                             <p class="card-text"><?php echo "<b>Raça</b>: ", $card->race ?></p>
+                            <!--<p class="card-text"><?php echo "<b>Arquétipo</b>: ", $card->archetype ?></p>-->
+                            <p class="card-text"><b>Arquétipo</b>:
+                                <?php
+                                    error_reporting(E_ERROR | E_PARSE);// Desativa as mensagens de erro
+                                    if($card->archetype == 0){// Verifica se o arquétipo existe
+                                        echo "Não tem arquétipo";// Caso não exista, mostra a mensagem
+                                    }else{// Caso exista, mostra o arquétipo
+                                        echo $card->archetype;
+                                    }
+                                ?>
+                            </p>
                             <!--<p class="card-text"><?php echo "<b>Atributos</b>: ", $card->attribute ?></p>-->
                             <p class="card-text"><b>Atributos</b>:
                                 <?php
@@ -49,7 +61,17 @@
                                     }
                                 ?>
                             </p>
-                            <p class="card-text"><?php echo "<b>Conjuntos de cartas</b>: ", $card->card_sets[0]->set_name ?> (<?php echo $card->card_sets[0]->set_rarity ?>)</p>
+                            <!--<p class="card-text"><?php echo "<b>Conjuntos de cartas</b>: ", $card->card_sets[0]->set_name ?> (<?php echo $card->card_sets[0]->set_rarity ?>)</p>-->
+                            <p class="card-text"><b>Conjuntos de cartas</b>:
+                                <?php
+                                    error_reporting(E_ERROR | E_PARSE);// Desativa as mensagens de erro
+                                    if($card->attribute == 0){// Verifica se o conjunto existe
+                                        echo "Não tem packs";// Caso não exista, mostra a mensagem
+                                    }else{// Caso exista, mostra o conjunto
+                                        echo $card->card_sets[0]->set_name . " (" . $card->card_sets[0]->set_rarity . ")";
+                                    }
+                                ?>
+                            </p>
                             <p class="card-text"><?php echo "<b>Preços</b>: U$ ", $card->card_prices[0]->cardmarket_price, " (Cardmarket)" ?> / <?php echo "U$ ", $card->card_prices[0]->tcgplayer_price, " (TCGplayer)" ?> / 
                                 <?php echo "U$ ", $card->card_prices[0]->ebay_price, " (Ebay)" ?> / <?php echo "U$ ", $card->card_prices[0]->coolstuffinc_price, " (CoolStuffInc)" ?> / <?php echo "U$ ", $card->card_prices[0]->amazon_price, " (Amazon)" ?>
                             </p>
