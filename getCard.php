@@ -1,3 +1,6 @@
+<?php
+    error_reporting(E_ERROR | E_PARSE);
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
@@ -27,7 +30,6 @@
                             <p class="card-text"><?php echo "<b>Tipo</b>: ", $card->type ?></p>
                             <p class="card-text"><b>Nível</b>:
                                 <?php
-                                    error_reporting(E_ERROR | E_PARSE);// Desativa as mensagens de erro
                                     if($card->level == 0){// Verifica se o nível existe
                                         echo "Não tem nível";// Caso não exista, mostra a mensagem
                                     }else{// Caso exista, mostra o nível
@@ -42,7 +44,6 @@
                             <!--<p class="card-text"><?php echo "<b>Arquétipo</b>: ", $card->archetype ?></p>-->
                             <p class="card-text"><b>Arquétipo</b>:
                                 <?php
-                                    error_reporting(E_ERROR | E_PARSE);// Desativa as mensagens de erro
                                     if($card->archetype == 0){// Verifica se o arquétipo existe
                                         echo "Não tem arquétipo";// Caso não exista, mostra a mensagem
                                     }else{// Caso exista, mostra o arquétipo
@@ -53,7 +54,6 @@
                             <!--<p class="card-text"><?php echo "<b>Atributos</b>: ", $card->attribute ?></p>-->
                             <p class="card-text"><b>Atributos</b>:
                                 <?php
-                                    error_reporting(E_ERROR | E_PARSE);// Desativa as mensagens de erro
                                     if($card->attribute == 0){// Verifica se o atributo existe
                                         echo "Não tem atributo";// Caso não exista, mostra a mensagem
                                     }else{// Caso exista, mostra o atributo
@@ -64,7 +64,6 @@
                             <!--<p class="card-text"><?php echo "<b>Conjuntos de cartas</b>: ", $card->card_sets[0]->set_name ?> (<?php echo $card->card_sets[0]->set_rarity ?>)</p>-->
                             <p class="card-text"><b>Conjuntos de cartas</b>:
                                 <?php
-                                    error_reporting(E_ERROR | E_PARSE);// Desativa as mensagens de erro
                                     if($card->attribute == 0){// Verifica se o conjunto existe
                                         echo "Não tem packs";// Caso não exista, mostra a mensagem
                                     }else{// Caso exista, mostra o conjunto
