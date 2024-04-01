@@ -6,16 +6,36 @@
     <head>
         <meta charset='utf-8'>
         <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-        <title>Yu-Gi-Oh! | Busca cartas</title>
+        <title>Yu-Gi-Oh! | Busca de Cartas</title>
         <meta name='viewport' content='width=device-width, initial-scale=1'>
         <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
         <link rel='shortcut icon' type='image/x-icon' href='./favicon.ico' />
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-        <!--<script defer src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-        <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+        <style>
+            body{
+                background-color: #1a1a1a;
+                color: #fff;
+            }
+            .navbar, .card{
+                background-color: #333;
+            }
+            .card-img-top{
+                width: 100%;
+                height: auto;
+                border-bottom: 5px solid gold;
+            }
+            .card-title{
+                color: gold;
+            }
+            .attribute-icon{
+                width: 24px;
+                height: 24px;
+            }
+        </style>
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg bg-secondary-subtle">
+        <nav class="navbar navbar-expand-lg navbar-dark">
             <div class="container-fluid">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -28,106 +48,115 @@
                     </ul>
                     <form class="d-flex" role="search">
                     <input type="text" name="busca" placeholder="Buscar" style="text-align: center">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
+                        <button class="btn btn-outline-success" type="submit">Procurar</button>
                     </form>
                 </div>
             </div>
         </nav>
-        <div class="container">
+        <div class="container mt-5">
             <div class="row row-cols-1 row-cols-md-3 g-4">
                 <?php
-                    include_once './funcoes/pegaDados.php';// Função que pega os dados do banco de dados
+                    include_once './funcoes/pegaDados.php';
                     foreach(pegaDados($_GET['busca']) as $card):
                 ?>
                 <div class="col">
-                    <div class="card-deck">
-                        <div class="card d-flex">
-                            <img src="<?php echo $card->card_images[0]->image_url ?>" class="card-img-top">
-                            <div class="card-body">
-                                <h5 class="card-title"><?php echo $card->name ?></h5>
-                                <p class="card-text"><?php echo "<b>Descrição</b>: ", $card->desc ?></p>
-                                <p class="card-text">
-                                    <?php
-                                        if($card->atk == NULL){// Verifica se o ataque existe
-                                            echo "<b>ATK</b>: Não tem ataque";// Caso não exista, mostra a mensagem
-                                        }else{// Caso exista, mostra o ataque
-                                            echo "<b>ATK</b>: ", $card->atk;
+                    <div class="card h-100">
+                        <img src="<?php echo $card->card_images[0]->image_url ?>" class="card-img-top" alt="<?php echo $card->name ?>">
+                        <div class="card-body">
+                            <h5 class="card-title"><?php echo $card->name ?></h5>
+                            <p class="card-text"><?php echo "<b>Descrição</b>: ", $card->desc ?></p>
+                            <p class="card-text">
+                                <?php
+                                    if($card->atk == NULL){
+                                        echo "<b>ATK</b>: Não tem ataque";
+                                    }else{
+                                        echo "<b>ATK</b>: ", $card->atk;
+                                    }
+                                ?> / 
+                                <?php
+                                    if($card->def == NULL){
+                                        echo "<b>DEF</b>: Não tem defesa";
+                                    }else{
+                                        echo "<b>DEF</b>: ", $card->def;
+                                    }
+                                ?>
+                            </p>
+                            <p class="card-text"><?php echo "<b>Tipo</b>: ", $card->type ?> | <?php echo "<b>Raça</b>: ", $card->race ?></p>
+                            <p class="card-text"><b>Nível</b>:
+                                <?php
+                                    if($card->level == 0){
+                                        echo "Não tem nível";
+                                    }else{
+                                        echo $card->level . ' ';
+                                        for($i = 0; $i < $card->level; $i++){
+                                            echo '<img src="./level.png"> ';
                                         }
-                                    ?> / 
-                                    <?php
-                                        if($card->def == NULL){// Verifica se a defesa existe
-                                            echo "<b>DEF</b>: Não tem defesa";// Caso não exista, mostra a mensagem
-                                        }else{// Caso exista, mostra a defesa
-                                            echo "<b>DEF</b>: ", $card->def;
-                                        }
-                                    ?>
-                                <p class="card-text"><?php echo "<b>Tipo</b>: ", $card->type ?></p>
-                                <p class="card-text"><b>Nível</b>:
-                                    <?php
-                                        if($card->level == 0){// Verifica se o nível existe
-                                            echo "Não tem nível";// Caso não exista, mostra a mensagem
-                                        }else{// Caso exista, mostra o nível
-                                            echo $card->level;
-                                            echo ' <img src="./level.png">';
-                                        }
-                                    ?>
-                                </p>
-                                <p class="card-text"><?php echo "<b>Raça</b>: ", $card->race ?></p>
-                                <!--<p class="card-text"><?php echo "<b>Arquétipo</b>: ", $card->archetype ?></p>-->
-                                <p class="card-text"><b>Arquétipo</b>:
-                                    <?php
-                                        if($card->archetype == 0){// Verifica se o arquétipo existe
-                                            echo "Não tem arquétipo";// Caso não exista, mostra a mensagem
-                                        }else{// Caso exista, mostra o arquétipo
-                                            echo $card->archetype;
-                                        }
-                                    ?>
-                                </p>
-                                <!--<p class="card-text"><?php echo "<b>Atributos</b>: ", $card->attribute ?></p>-->
-                                <p class="card-text"><b>Atributos</b>:
-                                    <?php
-                                        if($card->attribute == 0){// Verifica se o atributo existe
-                                            echo "Não tem atributo";// Caso não exista, mostra a mensagem
-                                        }else{// Caso exista, mostra o atributo
+                                    }
+                                ?>
+                            </p>
+                            <p class="card-text"><b>Atributo</b>:
+                                <?php
+                                    if($card->attribute == 0){
+                                        echo "Não tem atributo";
+                                    }else{
+                                        if($card->attribute == "DARK"){
                                             echo $card->attribute;
+                                            echo ' <img src="./img/dark.jpg" class="attribute-icon">';
+                                        }elseif($card->attribute == "EARTH"){
+                                            echo $card->attribute;
+                                            echo ' <img src="./img/earth.jpg" class="attribute-icon">';
+                                        }elseif($card->attribute == "FIRE"){
+                                            echo $card->attribute;
+                                            echo ' <img src="./img/fire.jpg" class="attribute-icon">';
+                                        }elseif($card->attribute == "LIGHT"){
+                                            echo $card->attribute;
+                                            echo ' <img src="./img/light.jpg" class="attribute-icon">';
+                                        }elseif($card->attribute == "WATER"){
+                                            echo $card->attribute;
+                                            echo ' <img src="./img/water.jpg" class="attribute-icon">';
+                                        }elseif($card->attribute == "WIND"){
+                                            echo $card->attribute;
+                                            echo ' <img src="./img/wind.jpg" class="attribute-icon">';
+                                        }elseif($card->attribute == "DIVINE"){
+                                            echo $card->attribute;
+                                            echo ' <img src="./img/divine.jpg" class="attribute-icon">';
                                         }
-                                    ?>
-                                </p>
-                                <!--<p class="card-text"><?php echo "<b>Conjuntos de cartas</b>: ", $card->card_sets[0]->set_name ?> (<?php echo $card->card_sets[0]->set_rarity ?>)</p>-->
-                                <p class="card-text"><b>Conjuntos de cartas</b>:
-                                    <?php
-                                        if($card->attribute == 0){// Verifica se o conjunto existe
-                                            echo "Não tem packs";// Caso não exista, mostra a mensagem
-                                        }else{// Caso exista, mostra o conjunto
-                                            $conjuntos = '';
-                                            foreach ($card->card_sets as $set) {
-                                                $conjuntos .= $set->set_name . " (" . $set->set_rarity . "), ";
-                                            }
-                                            $conjuntos = rtrim($conjuntos, ", "); // Remove a última vírgula e espaço em branco
-                                            echo $conjuntos;
+                                    }
+                                ?>
+                            </p>
+                            <p class="card-text"><b>Arquétipo</b>:
+                                <?php
+                                    if($card->archetype == 0){
+                                        echo "Não tem arquétipo";
+                                    }else{
+                                        echo $card->archetype;
+                                    }
+                                ?>
+                            </p>
+                            <p class="card-text"><b>Conjuntos de cartas</b>:
+                                <?php
+                                    if($card->attribute == 0){
+                                        echo "Não tem packs";
+                                    }else{
+                                        $conjuntos = '';
+                                        foreach($card->card_sets as $set){
+                                            $conjuntos .= $set->set_name . " (<i>" . $set->set_rarity . "</i>), ";
                                         }
-                                    ?>
+                                        $conjuntos = rtrim($conjuntos, ", ");
+                                        echo $conjuntos;
+                                    }
+                                ?>
+                            </p>
+                            <p class="card-text"><?php echo "<b>Preços</b>: <u><i>Amazon</i></u>: U$ ", $card->card_prices[0]->amazon_price ?> <?php echo "<u><i>Cardmarket</i></u>: € ", $card->card_prices[0]->cardmarket_price ?> | <?php echo "<u><i>CoolStuffInc</i></u>: U$ ", $card->card_prices[0]->coolstuffinc_price ?> | <?php echo "<u><i>Ebay</i></u>: U$ ", $card->card_prices[0]->ebay_price ?> | <?php echo "<u><i>TCGplayer</i></u>: U$ ", $card->card_prices[0]->tcgplayer_price ?>
                                 </p>
-                                <p class="card-text"><?php echo "<b>Preços</b>: U$ ", $card->card_prices[0]->cardmarket_price, " (Cardmarket)" ?> / <?php echo "U$ ", $card->card_prices[0]->tcgplayer_price, " (TCGplayer)" ?> / 
-                                    <?php echo "U$ ", $card->card_prices[0]->ebay_price, " (Ebay)" ?> / <?php echo "U$ ", $card->card_prices[0]->coolstuffinc_price, " (CoolStuffInc)" ?> / <?php echo "U$ ", $card->card_prices[0]->amazon_price, " (Amazon)" ?>
-                                </p>
-                            </div>
                         </div>
                     </div>
                 </div>
                 <?php
-                    endforeach;// Fim do foreach
+                    endforeach;
                 ?>
             </div>
         </div>
-        <!--<form action="proximaPagina.php" method="POST">
-            <input type="hidden" name="paginaAtual" value="0">
-            <button type="submit" name="proximo">Próximo</button>
-        </form>
-        <form action="paginaAnterior.php" method="POST">
-            <input type="hidden" name="paginaAtual" value="0">
-            <button type="submit" name="proximo">Anterior</button>
-        </form>-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     </body>
 </html>
