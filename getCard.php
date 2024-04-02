@@ -170,15 +170,6 @@
                                     }
                                 ?>
                             </p>
-                            <p class="card-text">
-                                <?php
-                                    $ocg_date = $card->misc_info[0]->ocg_date;
-                                    $tcg_date = $card->misc_info[0]->tcg_date;
-                                    $formatted_ocg_date = date("d/m/Y", strtotime($ocg_date));
-                                    $formatted_tcg_date = date("d/m/Y", strtotime($tcg_date));
-                                    echo "<b>Data de Lançamento</b>: <u><i>OCG</i></u>: $formatted_ocg_date | <u><i>TCG</i></u>: $formatted_tcg_date";
-                                ?>
-                            </p>
                             <p class="card-text"><b>Conjuntos de cartas</b>:
                                 <?php
                                     if($card->attribute == 0){
