@@ -32,6 +32,30 @@
                 width: 24px;
                 height: 24px;
             }
+            .navbar{
+                border-radius: 20px;
+            }
+            .nav-item img{
+                height: 40px;
+                width: auto;
+            }
+            input[type="text"]{
+                border: 2px solid gold;
+                border-radius: 20px;
+                background-color: #333;
+                color: white;
+                padding: 5px 10px;
+            }
+            .btn-outline-success{
+                border-color: gold;
+                color: gold;
+                border-radius: 20px;
+                transition: background-color 0.3s, color 0.3s;
+            }
+            .btn-outline-success:hover{
+                background-color: gold;
+                color: #333;
+            }
         </style>
     </head>
     <body>
@@ -43,11 +67,13 @@
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/Yu-Gi-Oh-/index.php">Home</a>
+                            <a class="nav-link active" aria-current="page" href="./index.php">
+                                <img src="./img/logo.png" alt="Home" class="img-fluid">
+                            </a>
                         </li>
                     </ul>
                     <form class="d-flex" role="search">
-                    <input type="text" name="busca" placeholder="Buscar" style="text-align: center">
+                        <input type="text" name="busca" placeholder="Buscar" style="text-align: center">
                         <button class="btn btn-outline-success" type="submit">Procurar</button>
                     </form>
                 </div>
@@ -67,7 +93,6 @@
                                 <?php echo $card->name ?>
                                 <?php
                                     if($card->attribute == 0){
-                                        //echo "Não tem atributo";
                                         if($card->type == "Spell Card"){
                                             echo ' <img src="./img/spell.png" class="attribute-icon">';
                                         }elseif($card->type == "Trap Card"){
@@ -106,42 +131,12 @@
                                     }else{
                                         echo $card->level . ' ';
                                         for($i = 0; $i < $card->level; $i++){
-                                            echo '<img src="./level.png"> ';
+                                            echo '<img src="./img/level.png"> ';
                                         }
                                     }
                                 ?>
                             </p>
                             <p class="card-text"><?php echo "<b>Raça</b>: ", $card->race ?> | <?php echo "<b>Tipo</b>: ", $card->type ?></p>
-                            <!--<p class="card-text"><b>Atributo</b>:
-                                <?php
-                                    /*if($card->attribute == 0){
-                                        echo "Não tem atributo";
-                                    }else{
-                                        if($card->attribute == "DARK"){
-                                            echo $card->attribute;
-                                            echo ' <img src="./img/dark.jpg" class="attribute-icon">';
-                                        }elseif($card->attribute == "EARTH"){
-                                            echo $card->attribute;
-                                            echo ' <img src="./img/earth.jpg" class="attribute-icon">';
-                                        }elseif($card->attribute == "FIRE"){
-                                            echo $card->attribute;
-                                            echo ' <img src="./img/fire.jpg" class="attribute-icon">';
-                                        }elseif($card->attribute == "LIGHT"){
-                                            echo $card->attribute;
-                                            echo ' <img src="./img/light.jpg" class="attribute-icon">';
-                                        }elseif($card->attribute == "WATER"){
-                                            echo $card->attribute;
-                                            echo ' <img src="./img/water.jpg" class="attribute-icon">';
-                                        }elseif($card->attribute == "WIND"){
-                                            echo $card->attribute;
-                                            echo ' <img src="./img/wind.jpg" class="attribute-icon">';
-                                        }elseif($card->attribute == "DIVINE"){
-                                            echo $card->attribute;
-                                            echo ' <img src="./img/divine.jpg" class="attribute-icon">';
-                                        }
-                                    }*/
-                                ?>
-                            </p>-->
                             <p class="card-text"><?php echo "<b>Descrição</b>: ", $card->desc ?></p>
                             <p class="card-text">
                                 <?php
