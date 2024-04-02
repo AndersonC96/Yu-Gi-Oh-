@@ -168,6 +168,15 @@
                                     }
                                 ?>
                             </p>
+                            <p class="card-text">
+                                <?php
+                                    $ocg_date = $card->misc_info[0]->ocg_date;
+                                    $tcg_date = $card->misc_info[0]->tcg_date;
+                                    $formatted_ocg_date = date("d/m/Y", strtotime($ocg_date));
+                                    $formatted_tcg_date = date("d/m/Y", strtotime($tcg_date));
+                                    echo "<b>Data de Lançamento</b>: <u><i>OCG</i></u>: $formatted_ocg_date | <u><i>TCG</i></u>: $formatted_tcg_date";
+                                ?>
+                            </p>
                             <p class="card-text"><b>Conjuntos de cartas</b>:
                                 <?php
                                     if($card->attribute == 0){
@@ -182,8 +191,9 @@
                                     }
                                 ?>
                             </p>
-                            <p class="card-text"><?php echo "<b>Preços</b>: <u><i>Amazon</i></u>: U$ ", $card->card_prices[0]->amazon_price ?> <?php echo "<u><i>Cardmarket</i></u>: € ", $card->card_prices[0]->cardmarket_price ?> | <?php echo "<u><i>CoolStuffInc</i></u>: U$ ", $card->card_prices[0]->coolstuffinc_price ?> | <?php echo "<u><i>Ebay</i></u>: U$ ", $card->card_prices[0]->ebay_price ?> | <?php echo "<u><i>TCGplayer</i></u>: U$ ", $card->card_prices[0]->tcgplayer_price ?>
-                                </p>
+                            <p class="card-text">
+                                <?php echo "<b>Preços</b>: <u><i>Amazon</i></u>: U$ ", $card->card_prices[0]->amazon_price ?> <?php echo "<u><i>Cardmarket</i></u>: € ", $card->card_prices[0]->cardmarket_price ?> | <?php echo "<u><i>CoolStuffInc</i></u>: U$ ", $card->card_prices[0]->coolstuffinc_price ?> | <?php echo "<u><i>Ebay</i></u>: U$ ", $card->card_prices[0]->ebay_price ?> | <?php echo "<u><i>TCGplayer</i></u>: U$ ", $card->card_prices[0]->tcgplayer_price ?>
+                            </p>
                         </div>
                     </div>
                 </div>
