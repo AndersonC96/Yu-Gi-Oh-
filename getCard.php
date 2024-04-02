@@ -9,7 +9,7 @@
         <title>Yu-Gi-Oh! | Busca de Cartas</title>
         <meta name='viewport' content='width=device-width, initial-scale=1'>
         <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
-        <link rel='shortcut icon' type='image/x-icon' href='./favicon.ico' />
+        <link rel='shortcut icon' type='image/x-icon' href='./img/favicon.ico' />
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
         <style>
@@ -63,25 +63,42 @@
                     <div class="card h-100">
                         <img src="<?php echo $card->card_images[0]->image_url ?>" class="card-img-top" alt="<?php echo $card->name ?>">
                         <div class="card-body">
-                            <h5 class="card-title"><?php echo $card->name ?></h5>
-                            <p class="card-text"><?php echo "<b>Descrição</b>: ", $card->desc ?></p>
-                            <p class="card-text">
+                            <h5 class="card-title">
+                                <?php echo $card->name ?>
                                 <?php
-                                    if($card->atk == NULL){
-                                        echo "<b>ATK</b>: Não tem ataque";
+                                    if($card->attribute == 0){
+                                        //echo "Não tem atributo";
+                                        if($card->type == "Spell Card"){
+                                            echo ' <img src="./img/spell.png" class="attribute-icon">';
+                                        }elseif($card->type == "Trap Card"){
+                                            echo ' <img src="./img/trap.png" class="attribute-icon">';
+                                        }
                                     }else{
-                                        echo "<b>ATK</b>: ", $card->atk;
-                                    }
-                                ?> / 
-                                <?php
-                                    if($card->def == NULL){
-                                        echo "<b>DEF</b>: Não tem defesa";
-                                    }else{
-                                        echo "<b>DEF</b>: ", $card->def;
+                                        if($card->attribute == "DARK"){
+                                            //echo $card->attribute;
+                                            echo ' <img src="./img/dark.jpg" class="attribute-icon">';
+                                        }elseif($card->attribute == "EARTH"){
+                                            //echo $card->attribute;
+                                            echo ' <img src="./img/earth.jpg" class="attribute-icon">';
+                                        }elseif($card->attribute == "FIRE"){
+                                            //echo $card->attribute;
+                                            echo ' <img src="./img/fire.jpg" class="attribute-icon">';
+                                        }elseif($card->attribute == "LIGHT"){
+                                            //echo $card->attribute;
+                                            echo ' <img src="./img/light.jpg" class="attribute-icon">';
+                                        }elseif($card->attribute == "WATER"){
+                                            //echo $card->attribute;
+                                            echo ' <img src="./img/water.jpg" class="attribute-icon">';
+                                        }elseif($card->attribute == "WIND"){
+                                            //echo $card->attribute;
+                                            echo ' <img src="./img/wind.jpg" class="attribute-icon">';
+                                        }elseif($card->attribute == "DIVINE"){
+                                            //echo $card->attribute;
+                                            echo ' <img src="./img/divine.jpg" class="attribute-icon">';
+                                        }
                                     }
                                 ?>
-                            </p>
-                            <p class="card-text"><?php echo "<b>Tipo</b>: ", $card->type ?> | <?php echo "<b>Raça</b>: ", $card->race ?></p>
+                            </h5>
                             <p class="card-text"><b>Nível</b>:
                                 <?php
                                     if($card->level == 0){
@@ -94,9 +111,10 @@
                                     }
                                 ?>
                             </p>
-                            <p class="card-text"><b>Atributo</b>:
+                            <p class="card-text"><?php echo "<b>Raça</b>: ", $card->race ?> | <?php echo "<b>Tipo</b>: ", $card->type ?></p>
+                            <!--<p class="card-text"><b>Atributo</b>:
                                 <?php
-                                    if($card->attribute == 0){
+                                    /*if($card->attribute == 0){
                                         echo "Não tem atributo";
                                     }else{
                                         if($card->attribute == "DARK"){
@@ -121,6 +139,23 @@
                                             echo $card->attribute;
                                             echo ' <img src="./img/divine.jpg" class="attribute-icon">';
                                         }
+                                    }*/
+                                ?>
+                            </p>-->
+                            <p class="card-text"><?php echo "<b>Descrição</b>: ", $card->desc ?></p>
+                            <p class="card-text">
+                                <?php
+                                    if($card->atk == NULL){
+                                        echo "<b>ATK</b>: Não tem ataque";
+                                    }else{
+                                        echo "<b>ATK</b>: ", $card->atk;
+                                    }
+                                ?> / 
+                                <?php
+                                    if($card->def == NULL){
+                                        echo "<b>DEF</b>: Não tem defesa";
+                                    }else{
+                                        echo "<b>DEF</b>: ", $card->def;
                                     }
                                 ?>
                             </p>
