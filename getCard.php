@@ -1,10 +1,12 @@
 <?php
     error_reporting(E_ERROR | E_PARSE);
+    include_once './funcoes/pegaDados.php';
     $paginaAtual = isset($_GET['pagina']) ? (int) $_GET['pagina'] : 1;
     $cartasPorPagina = 10;
     $inicio = ($paginaAtual - 1) * $cartasPorPagina;
     $totalDeCartas = 100;
     $totalDePaginas = ceil($totalDeCartas / $cartasPorPagina);
+    $cartas = pegaDados($_GET['busca'], $inicio, $cartasPorPagina);
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -202,19 +204,6 @@
                 ?>
             </div>
         </div>
-        <nav aria-label="Page navigation">
-            <ul class="pagination justify-content-center">
-                <?php if($paginaAtual > 1): ?>
-                <li class="page-item"><a class="page-link" href="?pagina=<?php echo $paginaAtual - 1; ?>&busca=<?php echo $_GET['busca']; ?>">Anterior</a></li>
-                <?php endif; ?>
-                <?php for($i = 1; $i <= $totalDePaginas; $i++): ?>
-                <li class="page-item <?php echo ($i == $paginaAtual) ? 'active' : ''; ?>"><a class="page-link" href="?pagina=<?php echo $i; ?>&busca=<?php echo $_GET['busca']; ?>"><?php echo $i; ?></a></li>
-                <?php endfor; ?>
-                <?php if($paginaAtual < $totalDePaginas): ?>
-                <li class="page-item"><a class="page-link" href="?pagina=<?php echo $paginaAtual + 1; ?>&busca=<?php echo $_GET['busca']; ?>">Próximo</a></li>
-                <?php endif; ?>
-            </ul>
-        </nav>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     </body>
 </html>
